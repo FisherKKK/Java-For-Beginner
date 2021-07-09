@@ -335,6 +335,142 @@ class Singleton {
 
 ![](C:\Users\Fisher\Desktop\holiday\Java-For-Beginner\11.PNG)
 
+## `Java`常用类
+
+* `Java8`很多包, 主要是`java8`, `javax`, `org`三个包
+* 文档原本书程序中的注释, 采用`JavaDoc`技术, 将注释抽取出来, 组织成`HTML`表现`API`
+*   `Java`类库
+  1. 以`java`开始 的包是`Java`核心包
+  2. `javax`是`java`扩展包
+
+### 数字相关类
+
+`Java`数字类
+
+* 整数, `Short`, `Int`, `Long`
+* 浮点数
+* 大整数, 大浮点数
+* 随机数
+* 工具类
+* `java.math`包
+* 整数类型溢出会直接编译出错
+* 整型默认`int`, 浮点数默认`double`
+* 随机数的常用操作
+  1. `nextInt()`返回`int`
+  2. `nextInt(int a)`返回`[0,a)`之间的随机`int`
+  3. `nextDouble()`返回一个`[0, 1.0)`之间的`double`
+  4. `ints`方法批量返回随机数组
+* `Math.random()`返回一个`[0.0, 1.0]`之间的`double`
+* `java.lang.Math`
+  1. `abs`
+  2. `log`
+  3. `max`
+  4. `pow`
+  5. `round`
+  6. `floor`
+  7. `ceil`
+
+### 字符串相关类
+
+* `String`, 不可变对象, 加减操作性能较差
+
+  * `charAt`
+  * `indexOf`
+  * `concat`, 相当于会生成一个新的对象
+  * `endWith`
+  * `equal`实际值是否相等
+  * `trim`取除前后的空格, 返回一个新对象
+  * `split`, 将字符串按照指定字符分割
+  * `replaceAll`, 第一个参数是正则表达式
+
+* 可变字符串
+
+  1. `StringBuffer`, 字符串加减, 同步, 性能好
+  2. `StringBuilder`, 字符串加减, 不同步, 性能更好
+
+  方法一样, 区别在同步
+
+  * 初始化的时候可以赋予初始值
+
+  * `append`
+  * `length`表示字符串实际长度
+  * `capacity`表示实际存储空间
+  * `trimTOSize()`取出空隙, 将字符串存储压缩到实际大小
+  * 如果有大量`append`, 事先预估大小, 在调用相应的构造函数
+  * 一旦`length`大于`capacity`, `capacity`便在前一次的基础上加1后翻倍
+
+### 时间相关类
+
+* `java.sql.Date`和数据库对应的时间类
+
+* `Calendar`是目前程序最常用的, 但是是抽象类
+
+  常用操作:
+
+  ```java
+  Calendar gc = Calendar.getInstance();
+  Calendar gc = new GregorianCalenda();
+  get(FILED); // 获取事件中每个属性的值, 注意月份为0-11
+  getTime(); // 返回对应的Data对象
+  getTimeInMillis(); // 返回子毫秒数
+  set(Field); // 设置时间段
+  add(field, amount); // 指定字段增加减少时间
+  roll(field, amount); // 指定字段增加/减少时间, 但是不影响上一级, 支队指定的域做改变, 其余的域并不变
+  ```
+
+* `Java8`推出新的时间`API`, `java.time`, 特点: 多线程不变性, 遵循设计模式
+
+  ```java
+  java.time; // 新的日期/时间API基础包
+  java.time.chrono; // 非ISO的日历系统定义了广泛的API
+  java.time.format; // 格式化和解析日期时间对象的类
+  java.time.temporal; // 特定时态对象
+  java.time.zone; // 支持不同时区以及相关规则的类
+  ```
+
+* `java.time`包主要包括
+
+  * `LocalDate`日期类
+  * `LocalTime`时间类
+  * `LocalDateTime` 上面两个之和
+  * `Instant`时间戳
+
+```java
+LocalDate locaDate = LocalDate.now(); // 返回当前时间
+locaDate = LocalDate.of(int year, Month.Enum, day);
+localDate = LocalDate.ofYearDay(int year, int day);
+localDate.isLeapYear(); // 是否是闰年
+localDate.plus(); // 事件运算等操作
+LocalTime time = LocalTime.now(); // 当前时间 用法基本同上
+
+Period period = today.util(lastDayOfYear); // 计算时间间隔
+Instant timestap = Instance.now(); // 定义事件戳
+3 3.14 3.141 3 
+```
+
+
+
+### 格式化相关类
+
+* `NumberFormat`
+* `MessageFormat`
+* `DateFormat`
+* `DateTimeFormatter`
+
+```java
+DecimalFormat(); // #表示可以为空, 0表示0填充, 整数有几位填几位
+MessageFormat.format(); // 采用"{}" 传入Object[]
+DateTimeFormatter.ofPattern(); // yyyy表示年, MM表示月, dd表示日
+```
+
+
+
+## `Java`数据结构
+
+### 数组
+
+
+
 
 
 ## 练习题
@@ -487,11 +623,11 @@ class Singleton {
 
 * ```java
    Teacher t;
-  
+    
     Student s;
-  
+    
     // t and s are all non-null.
-  
+    
     if (t instanceof Person ){ s=(Student)t; }
   // 两种不同的类型无法强转
   ```
